@@ -1,13 +1,385 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
+    * {
+        margin: 0px;
+        padding: 0px;
+        font-family: 'Open Sans', sans-serif;
+    }
+    /**Header Style**/
+    
+    .header {
+        border-bottom: 5px solid rgb(92, 183, 216)
+    }
+    
+    .headWrapper {
+        width: 90%;
+        margin: 20px auto;
+        text-align: right;
+        min-height: 50px;
+    }
+    
+    .headWrapper .logo {
+        float: left;
+    }
+    
+    .headWrapper .logo h1 {
+        display: inline-block;
+        width: 100px;
+    }
+    
+    .headWrapper .logo h1 img {
+        width: 100%;
+    }
+    
+    .headWrapper .rightSection {
+        display: inline-block
+    }
+    
+    .headWrapper .explore {
+        color: black;
+        text-decoration: none;
+        margin-top: 20px;
+        margin-right: 50px;
+    }
+    
+    .headWrapper .changeLang {
+        margin-top: 20px;
+        display: inline-block;
+    }
+    
+    .headWrapper select {
+        background-color: white;
+        cursor: pointer;
+        display: inline-block;
+        width: 50px;
+        text-align: center;
+        font-size: 15px;
+        border: 1px solid rgb(92, 183, 216);
+    }
+    
+    .hamButton {
+        display: none;
+        background: url("./icon/menu.png") no-repeat;
+        background-size: contain;
+    }
+    
+    .closeMenu {
+        display: none;
+        background: url("./icon/close.png") no-repeat;
+        background-size: contain;
+    }
+    /**Content Style**/
+    
+    .wrapper {
+        width: 65%;
+        margin: 0 auto;
+        display: flex;
+    }
+    
+    .contentWrapper {
+        width: 70%;
+        margin: 0 auto;
+    }
+    
+    #mainWrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        flex: 2;
+        margin: 0px 20px 0px 0px;
+    }
+    
+    #mainWrapper .submitJson {
+        margin: 10px 0px;
+        width: 100px;
+    }
+    
+    #mainWrapper h2 {
+        font-weight: 100;
+    }
+    
+    #tuileTop {
+        display: flex;
+        flex-direction: row;
+    }
+    
+    .title {
+        margin: 30px auto;
+        font-weight: 200;
+        width: 70%;
+    }
+    
+    #contentLanguageSwitch {
+        margin: -10px auto;
+        width: 100%;
+        text-align: left
+    }
+    
+    label {
+        font-style: italic;
+    }
+    
+    .tuilesSimple {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+    
+    .card {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 5px 0px;
+    }
+    
+    .card .inputLilTuile {
+        flex-grow: 1;
+    }
+    
+    .contentManage {
+        margin: 10px 0px;
+    }
+    
+    #buttonWrapper {
+        padding: 16px;
+    }
+    /**Modal Image preview Style**/
+    
+    .closeButton {
+        display: inline;
+        cursor: pointer;
+        position: absolute;
+        margin-right: -30px;
+        color: white;
+    }
+    
+    .closeColor {
+        color: white;
+    }
+    
+    .displayPreviewImage {
+        text-align: center;
+    }
+    
+    .displayPreviewImage img {
+        max-width: 100%;
+    }
+    /**Sidebar Style**/
+    
+    #cardSidebar {
+        display: flex;
+        margin-top: 45px;
+        flex: 1;
+        flex-direction: column;
+        justify-content: space-between;
+        align-self: flex-start;
+    }
+    
+    .noselect {
+        user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -webkit-user-select: none;
+    }
+    
+    .sidebarTulletWrapper {
+        min-height: 200px
+    }
+    
+    .sidebarTulletWrapper .sidebarTullet {
+        text-align: center;
+        line-height: 400%;
+        color: #535353;
+        height: 100%;
+        cursor: pointer;
+    }
+    
+    #cancel {
+        display: none;
+    }
+    
+    #warningChange {
+        color: red;
+        font-size: 10px;
+        font-style: italic;
+        display: inline;
+    }
+    /** RESPONSIVE BREAKPOINT 960PX **/
+    
+    @media screen and (max-width:960px) {
+        #mainWrapper {
+            width: 100%;
+        }
+        .wrapper {
+            width: 90%;
+            flex-direction: column;
+        }
+        .title {
+            text-align: center;
+            width: 90%;
+            margin-top: 130px;
+            font-size: 24px;
+        }
+        #cardSidebar {
+            width: 100%;
+        }
+    }
+    /** RESPONSIVE BREAKPOINT 480PX **/
+    
+    @media screen and (max-width: 480px) {
+        body {
+            overflow-x: hidden;
+        }
+        .header {
+            position: fixed;
+            height: 100px;
+            width: 100%;
+            background-color: white;
+            z-index: 1000;
+            top: 0px;
+        }
+        .headWrapper {
+            min-height: 0px;
+            height: 30px;
+        }
+        .headWrapper .logo h1 {
+            width: 70px;
+        }
+        .contentWrapper {
+            width: 90%;
+            margin-top: 120px;
+        }
+        #tuileTop {
+            flex-direction: column;
+        }
+        .rightSection {
+            position: fixed;
+            top: 0px;
+            right: -45%;
+            height: 100%;
+            width: 40%;
+            z-index: 10;
+            background-color: white;
+            border-left: 5px solid rgb(92, 183, 216);
+        }
+        .rightSection>* {
+            width: 100%;
+            display: inline-block;
+            padding: 10px 0px;
+            text-align: center;
+        }
+        .rightSection .explore:first-child {
+            margin-top: 70px;
+        }
+        .rightSection .explore {
+            margin: 0px;
+        }
+        .rightSection .changeLang {
+            margin: 0px;
+        }
+        .rightSection form select {
+            width: 90%;
+        }
+        .hamButton {
+            width: 35px;
+            height: 35px;
+            float: right;
+            display: block;
+            cursor: pointer;
+        }
+        .closeMenu {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 100%;
+            height: 20px;
+            padding: 0px;
+            cursor: pointer;
+        }
+    }
+    /**
+************FAQ
+*/
+    
+    .qAndAWrappers {
+        width: 100%;
+    }
+    
+    .qAndAFields {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .subTopicFields {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .TopicName {
+        display: flex;
+        align-items: flex-end;
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .inputTopic {
+        flex: 1
+    }
+    
+    .inputTopicWrapper {
+        display: flex;
+        flex: 1;
+    }
+    
+    .TopicName h2 {
+        flex-grow: 0;
+    }
+    
+    .TopicName:first-child {
+        display: flex;
+        flex: 1;
+    }
+    
+    #addTopicButton {
+        flex: 0;
+    }
+    
+    .deleteTarget {
+        color: red;
+        font-style: italic;
+        text-decoration: underline;
+        font-size: 12px;
+        cursor: pointer;
+    }
+    
+    .deleteTarget:active {
+        color: #8c0b0b;
+    }
+    /**
+  **********  IE11 Tweak  ***************
+*/
+    
+    @media screen and (-ms-high-contrast: active),
+    (-ms-high-contrast: none) {
+        .displayPreviewImage {
+            text-align: center;
+            line-height: 90;
+        }
+        .MuiFormControl-root {
+            display: flex!important;
+        }
+        .closeButton {
+            line-height: 0;
+            top: 25%;
+        }
+        .sidebarTulletWrapper .sidebarTullet {
+            border: 1px solid #d2d2d2
+        }
+    }
+    /** RESPONSIVE BREAKPOINT 960PX **/
+    
+    @media screen and (min-width:0\0) and (max-width:960px) {
+        .wrapper {
+            display: block;
+        }
+    }
