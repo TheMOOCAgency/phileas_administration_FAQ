@@ -191,10 +191,7 @@
         height: 100%;
         cursor: pointer;
     }
-    
-    #cancel {
-        display: none;
-    }
+
     
     #warningChange {
         color: red;

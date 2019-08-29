@@ -91,6 +91,22 @@ function TabTopics(props) {
           <div className='topicContent'>
             {React.cloneElement(props.children, { topics: topics[index], idx: index })}
           </div>
+          <div id="buttonWrapper">
+            <Button className="submitJson" color="primary" size="small" variant="outlined" onClick={(e) => {
+              props.handleSubmit(e)
+            }} > Valider </Button>
+            {
+              props.change == true && 
+                <div id="cancel">
+                  <Button className="reinitJson" color="secondary" size="small" variant="outlined" onClick={(e) => {
+                    props.handleCancel(e)
+                  }} > Annuler </Button>
+                  <p id='warningChange'>Des Changements sont en cours</p>
+                </div>
+              
+            }
+
+          </div>
         </div>
       )
     })
@@ -101,7 +117,7 @@ function TabTopics(props) {
       onChangeIndex={props.handleChangeTabTopic}
     >
       {onScreen}
-      
+
     </SwipeableViews>
   )
 }
@@ -221,7 +237,6 @@ class App extends React.Component {
         }));
     }
     if (type === 'subTopic') {
-      console.log(this.state.data.getIn([0, 'fr', e, 'content']))
       this.setState(({ data }) => (
         {
           data: data.updateIn([0, 'fr', e, 'content'], arr => arr.push(
@@ -317,14 +332,15 @@ class App extends React.Component {
     this.setState({ data: Immutable.fromJS(this.props.dataFAQ) })
   }
   componentWillMount(){
-    this.state.data.length === 0 ? this.setState({ data: Immutable.fromJS(this.props.dataFAQ) }) : console.log('erreur')
+    this.state.data.length === 0 ? this.setState({ data: Immutable.fromJS(this.props.dataFAQ) }) : alert('Ereur lors de la récupération des données, veuillez contacter un administrateur !')
   }
   componentDidUpdate() {
-    if (this.state.data.equals(Immutable.fromJS(this.props.dataFAQ))){
-      if (this.state.change) { this.detecteChange(false) }
-    }else{
+    if (!this.state.data.equals(Immutable.fromJS(this.props.dataFAQ))){
       if (!this.state.change) { this.detecteChange(true) }
+    }else{
+      if (this.state.change) { this.detecteChange(false) }
     }
+    
   }
   initData(){
     this.setState(({ data }) => (
@@ -348,27 +364,12 @@ class App extends React.Component {
           ) : (
             <div id='mainWrapper'>
               <MenuTabTopics topics={this.state.data.toJS()[0][this.state.lang]} selectedTopic={this.state.selectedTopic} handleChangeTabTopic={this.handleChangeTabTopic} addField={this.addField} />
-              <TabTopics handleSubmit={this.handleSubmit} handleCancel={this.handleCancel} topics={this.state.data.toJS()[0][this.state.lang]} selectedTopic={this.state.selectedTopic} removeField={this.removeField} handleChangeTabTopic={this.handleChangeTabTopic} handleChange={this.handleChange} addField={this.addField} >
+              <TabTopics change={this.state.change} handleSubmit={this.handleSubmit} handleCancel={this.handleCancel} topics={this.state.data.toJS()[0][this.state.lang]} selectedTopic={this.state.selectedTopic} removeField={this.removeField} handleChangeTabTopic={this.handleChangeTabTopic} handleChange={this.handleChange} addField={this.addField} >
                 <SubTopics handleChange={this.handleChange} selectedTopic={this.state.selectedTopic} addField={this.addField} removeField={this.removeField}>
                   <QAndA handleChange={this.handleChange} addField={this.addField} removeField={this.removeField} />
                 </SubTopics>
               </TabTopics>
-              <div id="buttonWrapper">
-                <Button className="submitJson" color="primary" size="small" variant="outlined" onClick={(e) => {
-                  this.handleSubmit(e)
-                }} > Valider </Button>
-                {
-                  this.state.change && (
-                    <div id="cancel">
-                      <Button className="reinitJson" color="secondary" size="small" variant="outlined" onClick={(e) => {
-                        this.handleCancel()
-                      }} > Annuler </Button>
-                      <p id='warningChange'>Des Changements sont en cours</p>
-                    </div>
-                  )
-                }
 
-              </div>
             </div>
           )
           }
