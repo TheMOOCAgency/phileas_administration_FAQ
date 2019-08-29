@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/phileas_administration_FAQ/precache-manifest.912993cd14b950358f585f035ecd3524.js"
+  "/phileas_administration_FAQ/precache-manifest.7b8c2951ee52fbdaf6aa386d2ae4b220.js"
 );
 
 self.addEventListener('message', (event) => {

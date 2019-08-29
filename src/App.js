@@ -10,10 +10,14 @@ import ExpansionPanelActions from '@material-ui/core/ExpansionPanelActions';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import Visibility from '@material-ui/icons/Visibility'
 import Immutable from 'immutable'
 import tinymce from 'tinymce/tinymce';
 import { Editor } from '@tinymce/tinymce-react';
 import AddIcon from '@material-ui/icons/Add';
+import Modal from '@material-ui/core/Modal';
 import 'tinymce/skins/ui/oxide/skin.min.css'
 import 'tinymce/skins/ui/oxide/content.min.css'
 import 'tinymce/plugins/image'
@@ -55,8 +59,16 @@ function MenuTabTopics(props) {
 }
 
 function TabTopics(props) {
+  const [open, setOpen] = React.useState(false);
   let topics = props.topics
   topics = topics.slice(0, 4)
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
   let onScreen = topics.map(
     (topic, index) => {
       return (
@@ -72,8 +84,32 @@ function TabTopics(props) {
             <CardActions>
               <div className='TopicName'>
                 <div className='inputTopicWrapper'>
+                  <Modal open={open}
+                    onClose={handleClose}
+                  >
+                    <img src={topic.icon} alt={topic.icon} />
+                  </Modal>
                   <TextField className="inputTopic" label="Nom" onChange={(e) => { props.handleChange(e.target.value, [index, "topic", 'name']) }} value={topic.nameTopic}></TextField>
-                  <TextField className="inputTopic" label="icône" onChange={(e) => { props.handleChange(e.target.value, [index, "topic", 'icon']) }} value={topic.icon}></TextField>
+                  <TextField
+                   className="inputTopic"
+                    label="icône" 
+                    onChange={(e) => { props.handleChange(e.target.value, [index, "topic", 'icon']) }} value={topic.icon}
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton
+                            edge="end"
+                            aria-label="Toggle Image"
+                            onClick={handleOpen}
+                          >
+                            <Visibility size="small" />
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
+                    >
+
+                  </TextField>
                 </div>
                 <div>
                   <Button color='primary' onClick={(e) => {
