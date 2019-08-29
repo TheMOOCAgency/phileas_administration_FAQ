@@ -1,0 +1,35 @@
+    .wrapper {
+        margin-top: 10px;
+    }
+    
+    #tabsWrapper {
+        display: flex;
+        align-items: center;
+    }
+    
+    #tabsElementWrapper {
+        flex: 1
+    }
+    
+    #addTopicButton {
+        height: 100%;
+        color: white;
+        border-radius: 10px 10px 0px 0px;
+        -webkit-border-radius: 10px 10px 0px 0px;
+        -moz-border-radius: 10px 10px 0px 0px;
+        -ms-border-radius: 10px 10px 0px 0px;
+        -o-border-radius: 10px 10px 0px 0px;
+    }
+    
+    .noTopic {
+        width: 100%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    #initTopicButton{
+        width : 200px;
+        color: white;
+    }

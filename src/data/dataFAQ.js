@@ -1,9 +1,3 @@
-import icon1 from '../icon/icon1.svg';
-import icon2 from '../icon/icon2.svg';
-import icon3 from '../icon/icon3.svg';
-
-
-
 const dataTest = [
     {
         language: 'fr',
@@ -11,7 +5,7 @@ const dataTest = [
             {
                 nameTopic: 'FAQ',
                 idTopic: 'FAQ',
-                icon: icon1,
+                icon: "",
                 content: [
                     {
                         nameSubTopic: "Gérer mes formations",
@@ -83,7 +77,7 @@ const dataTest = [
             {
                 nameTopic: 'Astuces',
                 idTopic: 'Astuces',
-                icon: icon2,
+                icon: " ",
                 content: [
                     {
                         nameSubTopic: "Gérer mes Astuces",
@@ -140,7 +134,7 @@ const dataTest = [
             {
                 nameTopic: 'Réglementation',
                 idTopic: 'Réglementation',
-                icon: icon3,
+                icon: " ",
                 content: [
                     {
                         nameSubTopic: "Gérer mes reglementation",
@@ -182,7 +176,7 @@ const dataTest = [
             {
                 nameTopic: 'Divers',
                 idTopic: 'Divers',
-                icon: icon1,
+                icon: " ",
                 content: [
                     {
                         nameSubTopic: "Gérer Divers",
@@ -213,7 +207,7 @@ const dataTest = [
         en: [
             {
                 nameTopic: 'FAQEN',
-                icon: icon1,
+                icon: " ",
                 content: [
                     {
                         nameSubTopic: "Gérer mes formations",
@@ -244,7 +238,7 @@ const dataTest = [
             },
             {
                 nameTopic: 'AstucesEN',
-                icon: icon1,
+                icon: " ",
                 content: [
                     {
                         nameSubTopic: "Gérer mes Astuces",
@@ -270,7 +264,7 @@ const dataTest = [
             },
             {
                 nameTopic: 'RéglementationEN',
-                icon: icon1,
+                icon: " ",
                 content: [
                     {
                         nameSubTopic: "Gérer mes reglementation",
@@ -296,7 +290,7 @@ const dataTest = [
             },
             {
                 nameTopic: 'DiversEN',
-                icon: icon1,
+                icon: " ",
                 content: [
                     {
                         nameSubTopic: "Gérer mes reglementation",
@@ -322,7 +316,7 @@ const dataTest = [
             },
             {
                 nameTopic: 'TestNEW',
-                icon: icon1,
+                icon: " ",
                 content: [
                     {
                         nameSubTopic: "Gérer mes reglementation",

@@ -20,9 +20,10 @@ import 'tinymce/plugins/image'
 import 'tinymce/plugins/link'
 import 'tinymce/plugins/code'
 import 'tinymce/themes/silver'
-
+import 'tinymce/themes/silver'
+import './App.css';
 /**Import des données ou à remplacer avec un fetch */
-import dataFAQ from './data/dataFAQ.js';
+
 
 
 function MenuTabTopics(props) {
@@ -35,22 +36,21 @@ function MenuTabTopics(props) {
       )
     })
   return (
-    <div>
+    <div id={'tabsWrapper'}>
       <Tabs
+        id={'tabsElementWrapper'}
         value={props.selectedTopic}
         indicatorColor="primary"
-        textColor="primary"
         onChange={props.handleChangeTabTopic}
         variant="fullWidth"
       >
         {onScreen}
-        {props.topics.length < 4 &&
-          <Button id="addTopicButton" color="primary" size="small" variant="contained" onClick={(e) => { props.addField('topic', e) }} > <AddIcon /> </Button>
-        }
+
       </Tabs>
-
+      {props.topics.length < 4 &&
+        <Button id="addTopicButton" color="primary" size="small" variant="contained" onClick={(e) => { props.addField('topic', e) }} > <AddIcon /> </Button>
+      }
     </div>
-
   )
 }
 
@@ -101,6 +101,7 @@ function TabTopics(props) {
       onChangeIndex={props.handleChangeTabTopic}
     >
       {onScreen}
+      
     </SwipeableViews>
   )
 }
@@ -176,41 +177,6 @@ function QAndA(props) {
   )
 }
 
-function Sidebar(props) {
-  console.log(props.selectedTopic)
-  return (
-    <Card id='cardSidebar'>
-      <CardContent>
-        <h4>
-          {props.topic.nameTopic}
-        </h4>
-      </CardContent>
-      <CardActions>
-        <div className='TopicName'>
-          <h2>
-            <TextField label="Topic" onChange={(e) => { props.handleChange(e.target.value, [props.index, "topic"]) }} value={props.topic.nameTopic}></TextField>
-          </h2>
-
-          <p className='deleteTarget' onClick={(e) => {
-            props.removeField('topic', props.index)
-          }}>Supprimer</p>
-        </div>
-        <div id="buttonWrapper">
-          <Button className="submitJson" color="primary" size="small" variant="outlined" onClick={(e) => {
-            props.handleSubmit(e)
-          }} > Valider </Button>
-          <div id="cancel">
-            <Button className="reinitJson" color="secondary" size="small" variant="outlined" onClick={(e) => {
-              props.handleCancel()
-            }} > Annuler </Button>
-            <p id='warningChange'>Des Changements sont en cours</p>
-          </div>
-        </div>
-      </CardActions>
-    </Card>
-  )
-}
-
 
 
 class App extends React.Component {
@@ -220,7 +186,8 @@ class App extends React.Component {
       lang: 'fr',
       selectedTopic: 0,
       expanded: false,
-      data: Immutable.fromJS(dataFAQ)
+      data: [],
+      change : false
     }
     this.handleChangeTabTopic = this.handleChangeTabTopic.bind(this)
     this.handleChangeSubtopic = this.handleChangeSubtopic.bind(this)
@@ -229,6 +196,7 @@ class App extends React.Component {
     this.handleCancel = this.handleCancel.bind(this)
     this.addField = this.addField.bind(this)
     this.removeField = this.removeField.bind(this)
+    this.initData = this.initData.bind(this)
   }
   handleChangeTabTopic(e, value) {
     this.setState({
@@ -244,11 +212,12 @@ class App extends React.Component {
       return panel = false
     }
   }
+
   addField(type, e, a) {
     if (type === 'topic') {
       this.setState(({ data }) => (
         {
-          data: data.updateIn([0, 'fr'], arr => arr.push(Immutable.fromJS({ content: [{ nameSubTopic: '', content: [{ namequestion: '', question: '', response: '' }] }], icon: '', idTopic: '', nameTopic: 'TopicName' })))
+          data: data.updateIn([0, 'fr'], arr => arr.push(Immutable.fromJS({ content: [], icon: '', idTopic: '', nameTopic: 'TopicName' }))),
         }));
     }
     if (type === 'subTopic') {
@@ -256,7 +225,7 @@ class App extends React.Component {
       this.setState(({ data }) => (
         {
           data: data.updateIn([0, 'fr', e, 'content'], arr => arr.push(
-            Immutable.fromJS({ nameSubTopic: '', content: [{ namequestion: '', question: '', response: '' }] })
+            Immutable.fromJS({ nameSubTopic: 'SubTopicName', content: [] })
           ))
         }));
     }
@@ -264,7 +233,7 @@ class App extends React.Component {
       this.setState(({ data }) => (
         {
           data: data.updateIn([0, 'fr', e, 'content', a, 'content'], arr => arr.push(
-            Immutable.fromJS({ namequestion: '', question: '', response: '' })))
+            Immutable.fromJS({ namequestion: 'Question', question: 'Question', response: '' })))
         }));
     }
   }
@@ -274,7 +243,7 @@ class App extends React.Component {
       if (this.state.selectedTopic > this.state.data.toJS()[0][this.state.lang].length - 2) {
         this.setState(({ data }) => (
           {
-            selectedTopic: i - 1,
+            selectedTopic: i>0? i - 1 : 0,
             data: data.deleteIn([0, 'fr', i])
           }));
       } else {
@@ -337,44 +306,72 @@ class App extends React.Component {
         }));
     }
   }
+  detecteChange (changeBool){
+    this.setState({ change: changeBool })
+  }
   handleSubmit(e) {
     //console.log(Immutable.fromJS(this.props.data))
     console.log(this.state.data.toJS())
   }
   handleCancel() {
-    this.setState({ data: Immutable.fromJS(dataFAQ) })
+    this.setState({ data: Immutable.fromJS(this.props.dataFAQ) })
+  }
+  componentWillMount(){
+    this.state.data.length === 0 ? this.setState({ data: Immutable.fromJS(this.props.dataFAQ) }) : console.log('erreur')
   }
   componentDidUpdate() {
-
-    if (this.state.data.equals(Immutable.fromJS(dataFAQ))) {
-      document.getElementById('cancel').style.display = "none"
-    } else {
-      document.getElementById('cancel').style.display = "block"
+    if (this.state.data.equals(Immutable.fromJS(this.props.dataFAQ))){
+      if (this.state.change) { this.detecteChange(false) }
+    }else{
+      if (!this.state.change) { this.detecteChange(true) }
     }
+  }
+  initData(){
+    this.setState(({ data }) => (
+      {
+        data: data.updateIn([0, 'fr'], arr => arr.push(Immutable.fromJS({ content: [], icon: '', idTopic: '', nameTopic: 'TopicName' })))
+      }
+    ))
+    
   }
   render() {
     return (
       <div className="wrapper">
-        <div id='mainWrapper'>
-          <MenuTabTopics topics={this.state.data.toJS()[0][this.state.lang]} selectedTopic={this.state.selectedTopic} handleChangeTabTopic={this.handleChangeTabTopic} addField={this.addField} />
-          <TabTopics handleSubmit={this.handleSubmit} handleCancel={this.handleCancel} topics={this.state.data.toJS()[0][this.state.lang]} selectedTopic={this.state.selectedTopic} removeField={this.removeField} handleChangeTabTopic={this.handleChangeTabTopic} handleChange={this.handleChange} addField={this.addField} >
-            <SubTopics handleChange={this.handleChange} selectedTopic={this.state.selectedTopic} addField={this.addField} removeField={this.removeField}>
-              <QAndA handleChange={this.handleChange} addField={this.addField} removeField={this.removeField} />
-            </SubTopics>
-          </TabTopics>
-          <div id="buttonWrapper">
-            <Button className="submitJson" color="primary" size="small" variant="outlined" onClick={(e) => {
-              this.handleSubmit(e)
-            }} > Valider </Button>
-            <div id="cancel">
-              <Button className="reinitJson" color="secondary" size="small" variant="outlined" onClick={(e) => {
-                this.handleCancel()
-              }} > Annuler </Button>
-              <p id='warningChange'>Des Changements sont en cours</p>
-            </div>
+        {this.state.data.toJS()[0].fr.length === 0 ?( 
+          <div className={'noTopic'}> Vous n'avez aucun topic <Button id='initTopicButton' color='primary' variant="contained" onClick={() => {
+              this.initData()
+            }}>
+            Créer un topic
+            </Button> 
           </div>
-        </div>
+        
+          ) : (
+            <div id='mainWrapper'>
+              <MenuTabTopics topics={this.state.data.toJS()[0][this.state.lang]} selectedTopic={this.state.selectedTopic} handleChangeTabTopic={this.handleChangeTabTopic} addField={this.addField} />
+              <TabTopics handleSubmit={this.handleSubmit} handleCancel={this.handleCancel} topics={this.state.data.toJS()[0][this.state.lang]} selectedTopic={this.state.selectedTopic} removeField={this.removeField} handleChangeTabTopic={this.handleChangeTabTopic} handleChange={this.handleChange} addField={this.addField} >
+                <SubTopics handleChange={this.handleChange} selectedTopic={this.state.selectedTopic} addField={this.addField} removeField={this.removeField}>
+                  <QAndA handleChange={this.handleChange} addField={this.addField} removeField={this.removeField} />
+                </SubTopics>
+              </TabTopics>
+              <div id="buttonWrapper">
+                <Button className="submitJson" color="primary" size="small" variant="outlined" onClick={(e) => {
+                  this.handleSubmit(e)
+                }} > Valider </Button>
+                {
+                  this.state.change && (
+                    <div id="cancel">
+                      <Button className="reinitJson" color="secondary" size="small" variant="outlined" onClick={(e) => {
+                        this.handleCancel()
+                      }} > Annuler </Button>
+                      <p id='warningChange'>Des Changements sont en cours</p>
+                    </div>
+                  )
+                }
 
+              </div>
+            </div>
+          )
+          }
       </div>
     )
   }

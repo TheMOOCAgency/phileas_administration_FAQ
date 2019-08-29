@@ -17,8 +17,6 @@ const theme = createMuiTheme({
     },
     background: "#5cb7d8"
 });
-
-
 class Header extends React.Component {
     constructor(props) {
         super(props);
@@ -60,7 +58,7 @@ ReactDOM.render(
     <ThemeProvider theme={theme}>
         <CssBaseline />
         <Header />
-        <App />
+        <App dataFAQ={window.props.dataFaq}/>
 </ThemeProvider>
 
 , document.getElementById('root'));
