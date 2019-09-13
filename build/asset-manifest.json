@@ -1,18 +1,17 @@
 {
   "files": {
-    "main.css": "/phileas_administration_FAQ/static/css/main.2f970b89.chunk.css",
-    "main.js": "/phileas_administration_FAQ/static/js/main.5406e673.chunk.js",
-    "main.js.map": "/phileas_administration_FAQ/static/js/main.5406e673.chunk.js.map",
-    "runtime~main.js": "/phileas_administration_FAQ/static/js/runtime~main.cc7c8e10.js",
-    "runtime~main.js.map": "/phileas_administration_FAQ/static/js/runtime~main.cc7c8e10.js.map",
-    "static/css/2.8713ff4c.chunk.css": "/phileas_administration_FAQ/static/css/2.8713ff4c.chunk.css",
-    "static/js/2.bb4686ad.chunk.js": "/phileas_administration_FAQ/static/js/2.bb4686ad.chunk.js",
-    "static/js/2.bb4686ad.chunk.js.map": "/phileas_administration_FAQ/static/js/2.bb4686ad.chunk.js.map",
-    "index.html": "/phileas_administration_FAQ/index.html",
-    "precache-manifest.7b8c2951ee52fbdaf6aa386d2ae4b220.js": "/phileas_administration_FAQ/precache-manifest.7b8c2951ee52fbdaf6aa386d2ae4b220.js",
-    "service-worker.js": "/phileas_administration_FAQ/service-worker.js",
-    "static/css/2.8713ff4c.chunk.css.map": "/phileas_administration_FAQ/static/css/2.8713ff4c.chunk.css.map",
-    "static/css/main.2f970b89.chunk.css.map": "/phileas_administration_FAQ/static/css/main.2f970b89.chunk.css.map",
-    "static/media/icon.png": "/phileas_administration_FAQ/static/media/icon.831c46b9.png"
+    "main.css": "./static/css/main.acbe4524.chunk.css",
+    "main.js": "./static/js/main.9c490af4.chunk.js",
+    "main.js.map": "./static/js/main.9c490af4.chunk.js.map",
+    "runtime~main.js": "./static/js/runtime~main.d653cc00.js",
+    "runtime~main.js.map": "./static/js/runtime~main.d653cc00.js.map",
+    "static/css/2.50026d63.chunk.css": "./static/css/2.50026d63.chunk.css",
+    "static/js/2.290fb409.chunk.js": "./static/js/2.290fb409.chunk.js",
+    "static/js/2.290fb409.chunk.js.map": "./static/js/2.290fb409.chunk.js.map",
+    "index.html": "./index.html",
+    "precache-manifest.c54e0135d041a869df51b5addfa27977.js": "./precache-manifest.c54e0135d041a869df51b5addfa27977.js",
+    "service-worker.js": "./service-worker.js",
+    "static/css/2.50026d63.chunk.css.map": "./static/css/2.50026d63.chunk.css.map",
+    "static/css/main.acbe4524.chunk.css.map": "./static/css/main.acbe4524.chunk.css.map"
   }
 }

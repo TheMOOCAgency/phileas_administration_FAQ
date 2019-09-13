@@ -4,7 +4,7 @@ window.props={ dataFaq : [
         fr: [{
             nameTopic: 'FAQ',
             idTopic: 'FAQ',
-            icon: "",
+            icon: "https://www.cnetfrance.fr/i/edit/2019/04/eso1644bsmall.jpg",
             content: [
                 {
                     nameSubTopic: "Gérer mes formations",
