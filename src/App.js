@@ -65,7 +65,8 @@ class App extends React.Component {
   }
   selectLang(e){
     this.setState({
-      lang: e.target.value
+      lang: e.target.value,
+      selectedTopic : 0
     })
   }
   handleChangeTabTopic(e, value) {
@@ -206,20 +207,40 @@ class App extends React.Component {
 
   }
   render() {
-
     return (
 
       <div className="wrapper">
+        <h1>Administration FAQ <a href="/studio-new.phileasamundi.com/assets/course-v1:global+00+2019/">Manage images</a></h1>
         {!this.state.loading ? (
             this.state.data.toJS()[this.state.lang].length === 0 ? (
             <div>
               <LangPicker selectLang={this.selectLang} lang={this.state.lang}/>
-              <div className={'noTopic'}> Vous n'avez aucun topic <Button id='initTopicButton' color='primary' variant="contained" onClick={() => {
+              <div className={'noTopic'}> Vous n'avez aucun topic
+              <Button id='initTopicButton' color='primary' variant="contained" onClick={() => {
                 this.initData()
               }}>
                 Créer un topic
-            </Button>
-            </div>
+              </Button>
+              <div className="buttonWrapper">
+                  {
+                      this.state.change === true &&
+                      <div>
+                        <Button className="submitJson buttonStylised" style={{ color: '#fff' }} color="primary" size="small" variant="contained" onClick={(e) => {
+                            this.handleSubmit(e)
+                        }} > Valider
+                      </Button>
+                        <div id="cancel">
+                            <p className='buttonStylised warningChange'>Des Changements sont en cours</p>
+                            <Button className='buttonStylised' className="reinitJson" style={{ color: '#fff' }} color="secondary" size="small" variant="contained" onClick={(e) => {
+                                this.handleCancel(e)
+                            }} > Annuler </Button>
+
+                        </div>
+                      </div>
+                  }
+
+              </div>
+              </div>
               </div>
             ) : (
                 <div id='mainWrapper'>
