@@ -24,7 +24,32 @@ import 'tinymce/plugins/code'
 import 'tinymce/themes/silver'
 import 'tinymce/themes/silver'
 
-
+const localize = {
+    en : {
+      name : "Name",
+      image : "Image",
+      delete : "Delete",
+      addSubTopic : "Add a subTopics",
+      subTopicName : "Subtopics name",
+      addQuestion : "Add a question",
+      answer : "Answer",
+      cancel : "Cancel",
+      submit : "Submit",
+      onChange : "Unsaved changes",
+    },
+    fr : {
+      name : "Nom",
+      image : "Icône",
+      delete : "Supprimer",
+      addSubTopic : "Ajouter un sous-topic",
+      subTopicName : "Nom de sous-topic",
+      addQuestion : "Ajouter une question",
+      answer : "Réponse",
+      cancel : "Annuler",
+      submit : "Valider",
+      onChange : "Des changements sont en cours ",
+    }
+}
 
 
 function TabTopics(props) {
@@ -79,10 +104,10 @@ function TabTopics(props) {
                                 <div>
                                     <Button className='buttonStylised' color='primary' style={{color:"#fff"}} variant="contained" onClick={(e) => {
                                         props.addField('subTopic', index)
-                                    }} size="small">Ajouter un sous-topic </Button>
+                                    }} size="small">{localize[props.lang].addSubTopic} </Button>
                                     <Button className='buttonStylised' color='secondary' style={{ color: "#fff" }} variant="contained" onClick={(e) => {
                                         props.removeField('topic', index)
-                                    }} size="small">Supprimer</Button>
+                                    }} size="small">{localize[props.lang].delete</Button>
                                 </div>
 
                             </div>
@@ -95,14 +120,14 @@ function TabTopics(props) {
                     <div className="buttonWrapper">
                         <Button className="submitJson buttonStylised" style={{ color: '#fff' }} color="primary" size="small" variant="contained" onClick={(e) => {
                             props.handleSubmit(e)
-                        }} > Valider </Button>
+                        }} > {localize[props.lang].submit </Button>
                         {
                             props.change === true &&
                             <div id="cancel">
                                 <p className='buttonStylised warningChange'>Des Changements sont en cours</p>
                                 <Button className='buttonStylised' className="reinitJson" style={{ color: '#fff' }} color="secondary" size="small" variant="contained" onClick={(e) => {
                                     props.handleCancel(e)
-                                }} > Annuler </Button>
+                                }} > {localize[props.lang].delete </Button>
 
                             </div>
 
@@ -122,9 +147,9 @@ function TabTopics(props) {
             <Modal open={open}
                 onClose={handleClose}
                 style={{ textAlign:"center",display: "grid" }}
-            >  
+            >
                     <div>
-                    
+
                     <span style={{ height: '100%', verticalAlign: "middle", display: "inline-block" }}></span>
                     <img className='previewImg' src={props.topics[props.selectedTopic].icon} alt={props.topics[props.selectedTopic].icon} />
                         <IconButton
@@ -133,18 +158,18 @@ function TabTopics(props) {
                             aria-label="Close Image"
                             onClick={handleClose}
                         color="secondary"
-                            
+
                         >
                             <CloseIcon style={{color:"white"}} size="small" />
                         </IconButton>
-                    
-                    
-                    </div>
-                    
 
-               
-                
-                
+
+                    </div>
+
+
+
+
+
 
             </Modal>
         </SwipeableViews>
@@ -178,10 +203,10 @@ function SubTopics(props) {
                     <ExpansionPanelActions>
                         <Button color='primary' onClick={(e) => {
                             props.addField('question', props.idx, index)
-                        }} size="small">Ajouter une question </Button>
+                        }} size="small">{localize[props.lang].addQuestion </Button>
                         <Button color='secondary' onClick={(e) => {
                             props.removeField('subTopic', props.idx, index)
-                        }} size="small">Supprimer</Button>
+                        }} size="small">{localize[props.lang].delete</Button>
                     </ExpansionPanelActions>
 
                 </ExpansionPanel>
@@ -205,7 +230,7 @@ function QAndA(props) {
     let topics = props.data
     let onScreen = topics.map(
         (topic, index) => {
-            
+
             return (
                 <ExpansionPanel key={index} >
                     <ExpansionPanelSummary
@@ -217,13 +242,13 @@ function QAndA(props) {
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails className="qAndAFields">
                         <TextField label="Question" fullWidth rows='12' value={topic.question} onChange={(e) => { props.handleChange(e.target.value, [props.topic, props.subTopic, "question", index]) }}></TextField>
-                        <p>Réponse:</p>
+                        <p>{localize[props.lang].response:</p>
                         <Editor inline className="tiny" init={{  plugins: 'link image code' }} initialValue={topic.response} onChange={(e) => { props.handleChange(e.level.content, [props.topic, props.subTopic, "response", index]) }} />
                     </ExpansionPanelDetails>
                     <ExpansionPanelActions>
                         <Button color='secondary' onClick={(e) => {
                             props.removeField('question', props.topic, props.subTopic, index)
-                        }} size="small">Supprimer</Button>
+                        }} size="small">{localize[props.lang].delete</Button>
                     </ExpansionPanelActions>
                 </ExpansionPanel>
             )

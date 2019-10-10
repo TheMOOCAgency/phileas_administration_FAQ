@@ -246,9 +246,9 @@ class App extends React.Component {
                 <div id='mainWrapper'>
                 <LangPicker selectLang={this.selectLang} lang={this.state.lang}/>
                   <MenuTabTopics topics={this.state.data.toJS()[this.state.lang]} selectedTopic={this.state.selectedTopic} handleChangeTabTopic={this.handleChangeTabTopic} addField={this.addField} />
-                  <TabTopics change={this.state.change} handleSubmit={this.handleSubmit} handleCancel={this.handleCancel} topics={this.state.data.toJS()[this.state.lang]} selectedTopic={this.state.selectedTopic} removeField={this.removeField} handleChangeTabTopic={this.handleChangeTabTopic} handleChange={this.handleChange} addField={this.addField} >
-                    <SubTopics handleChange={this.handleChange} selectedTopic={this.state.selectedTopic} addField={this.addField} removeField={this.removeField}>
-                      <QAndA handleChange={this.handleChange} addField={this.addField} removeField={this.removeField} />
+                  <TabTopics lang={this.state.lang} change={this.state.change} handleSubmit={this.handleSubmit} handleCancel={this.handleCancel} topics={this.state.data.toJS()[this.state.lang]} selectedTopic={this.state.selectedTopic} removeField={this.removeField} handleChangeTabTopic={this.handleChangeTabTopic} handleChange={this.handleChange} addField={this.addField} >
+                    <SubTopics lang={this.state.lang} handleChange={this.handleChange} selectedTopic={this.state.selectedTopic} addField={this.addField} removeField={this.removeField}>
+                      <QAndA lang={this.state.lang} handleChange={this.handleChange} addField={this.addField} removeField={this.removeField} />
                     </SubTopics>
                   </TabTopics>
 
