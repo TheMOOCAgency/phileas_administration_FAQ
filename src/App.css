@@ -52,21 +52,21 @@
             font-family: 'Open Sans', sans-serif;
         }
         /**Content Style**/
-        .wrapper>h1 {
+        .wrapperFAQ>h1 {
           margin: 30px;
           font-weight: 200;
         }
-        .wrapper>h1>a{
+        .wrapperFAQ>h1>a{
           float : right;
           text-decoration: none;
           color : rgb(102, 102, 102)
         }
-        .wrapper>h1>a:hover{
+        .wrapperFAQ>h1>a:hover{
           color: #0075b4;
           text-decoration: none;
         }
 
-        .wrapper {
+        .wrapperFAQ {
             width: 65%;
             margin: 0 auto;
             display: flex;
@@ -99,7 +99,7 @@
             #mainWrapper {
                 width: 100%;
             }
-            .wrapper {
+            .wrapperFAQ {
                 width: 90%;
                 flex-direction: column;
             }

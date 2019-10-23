@@ -107,7 +107,7 @@ function TabTopics(props) {
                                     }} size="small">{localize[props.lang].addSubTopic} </Button>
                                     <Button className='buttonStylised' color='secondary' style={{ color: "#fff" }} variant="contained" onClick={(e) => {
                                         props.removeField('topic', index)
-                                    }} size="small">{localize[props.lang].delete</Button>
+                                    }} size="small">{localize[props.lang].delete}</Button>
                                 </div>
 
                             </div>
@@ -120,14 +120,14 @@ function TabTopics(props) {
                     <div className="buttonWrapper">
                         <Button className="submitJson buttonStylised" style={{ color: '#fff' }} color="primary" size="small" variant="contained" onClick={(e) => {
                             props.handleSubmit(e)
-                        }} > {localize[props.lang].submit </Button>
+                        }} > {localize[props.lang].submit }</Button>
                         {
                             props.change === true &&
                             <div id="cancel">
                                 <p className='buttonStylised warningChange'>Des Changements sont en cours</p>
                                 <Button className='buttonStylised' className="reinitJson" style={{ color: '#fff' }} color="secondary" size="small" variant="contained" onClick={(e) => {
                                     props.handleCancel(e)
-                                }} > {localize[props.lang].delete </Button>
+                                }} > {localize[props.lang].delete }</Button>
 
                             </div>
 
@@ -177,10 +177,6 @@ function TabTopics(props) {
 }
 
 
-
-
-
-
 function SubTopics(props) {
 
     let topics = props.topics
@@ -203,10 +199,10 @@ function SubTopics(props) {
                     <ExpansionPanelActions>
                         <Button color='primary' onClick={(e) => {
                             props.addField('question', props.idx, index)
-                        }} size="small">{localize[props.lang].addQuestion </Button>
+                        }} size="small">{localize[props.lang].addQuestion }</Button>
                         <Button color='secondary' onClick={(e) => {
                             props.removeField('subTopic', props.idx, index)
-                        }} size="small">{localize[props.lang].delete</Button>
+                        }} size="small">{localize[props.lang].delete }</Button>
                     </ExpansionPanelActions>
 
                 </ExpansionPanel>
@@ -218,13 +214,6 @@ function SubTopics(props) {
         </div>
     )
 }
-
-
-
-
-
-
-
 
 function QAndA(props) {
     let topics = props.data
@@ -238,17 +227,17 @@ function QAndA(props) {
                         aria-controls="panel1bh-content"
                         id="panel1bh-header"
                     >
-                        <h4>{topic.question}</h4>
+                    <h4>{topic.question}</h4>
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails className="qAndAFields">
                         <TextField label="Question" fullWidth rows='12' value={topic.question} onChange={(e) => { props.handleChange(e.target.value, [props.topic, props.subTopic, "question", index]) }}></TextField>
-                        <p>{localize[props.lang].response:</p>
+                        <p>{localize[props.lang].response}:</p>
                         <Editor inline className="tiny" init={{  plugins: 'link image code' }} initialValue={topic.response} onChange={(e) => { props.handleChange(e.level.content, [props.topic, props.subTopic, "response", index]) }} />
                     </ExpansionPanelDetails>
                     <ExpansionPanelActions>
                         <Button color='secondary' onClick={(e) => {
                             props.removeField('question', props.topic, props.subTopic, index)
-                        }} size="small">{localize[props.lang].delete</Button>
+                        }} size="small">{localize[props.lang].delete}</Button>
                     </ExpansionPanelActions>
                 </ExpansionPanel>
             )
