@@ -59,6 +59,7 @@ class App extends React.Component {
     .then(response => response.json())
     .then((json) => {
         var dataFetched = json
+
         this.setState({ data: Immutable.fromJS(dataFetched),loading:false,dataOld: Immutable.fromJS(dataFetched)})
       });
   }
@@ -157,7 +158,6 @@ class App extends React.Component {
   }
   handleChange(e, arr) {
     if (arr[1] === "topic") {
-
       if (arr[2] === 'name') {
         this.setState(({ data }) => (
           {
@@ -228,7 +228,7 @@ class App extends React.Component {
     return (
 
       <div className="wrapperFAQ">
-        <h1>Administration FAQ <a href="/studio-new.phileasamundi.com/assets/course-v1:global+000+2019/">Manage images</a></h1>
+        <h1>Administration FAQ <a href="https://studio-new.phileasamundi.com/assets/course-v1:global+000+2019/">Manage images</a></h1>
         {!this.state.loading ? (
             this.state.data.toJS()[this.state.lang].length === 0 ? (
             <div>

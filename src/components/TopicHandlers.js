@@ -29,8 +29,8 @@ const localize = {
       name : "Name",
       image : "Image",
       delete : "Delete",
-      addSubTopic : "Add a subTopics",
-      subTopicName : "Subtopics name",
+      addSubTopic : "Add a subTopic",
+      subTopicName : "Subtopic name",
       addQuestion : "Add a question",
       answer : "Answer",
       cancel : "Cancel",
@@ -79,10 +79,10 @@ function TabTopics(props) {
                             <div className='TopicName'>
                                 <div className='inputTopicWrapper'>
 
-                                    <TextField className="inputTopic" label="Nom" onChange={(e) => { props.handleChange(e.target.value, [index, "topic", 'name']) }} value={topic.nameTopic}></TextField>
+                                    <TextField className="inputTopic" label={localize[props.lang].name } onChange={(e) => { props.handleChange(e.target.value, [index, "topic", 'name']) }} value={topic.nameTopic}></TextField>
                                     <TextField
                                         className="inputTopic"
-                                        label="icône"
+                                        label={localize[props.lang].image}
                                         onChange={(e) => { props.handleChange(e.target.value, [index, "topic", 'icon']) }} value={topic.icon}
                                         InputProps={{
                                             endAdornment: (
@@ -124,10 +124,10 @@ function TabTopics(props) {
                         {
                             props.change === true &&
                             <div id="cancel">
-                                <p className='buttonStylised warningChange'>Des Changements sont en cours</p>
+                                <p className='buttonStylised warningChange'>{localize[props.lang].onChange }</p>
                                 <Button className='buttonStylised' className="reinitJson" style={{ color: '#fff' }} color="secondary" size="small" variant="contained" onClick={(e) => {
                                     props.handleCancel(e)
-                                }} > {localize[props.lang].delete }</Button>
+                                }} > {localize[props.lang].cancel }</Button>
 
                             </div>
 
@@ -193,7 +193,7 @@ function SubTopics(props) {
                         <h3>{subTopic.nameSubTopic}</h3>
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails className="subTopicFields">
-                        <TextField label="Nom du sous-topic" onChange={(e) => { props.handleChange(e.target.value, [props.idx, "subtopic", index]) }} fullWidth rows='12' value={subTopic.nameSubTopic}></TextField>
+                        <TextField label={localize[props.lang].subTopicName } onChange={(e) => { props.handleChange(e.target.value, [props.idx, "subtopic", index]) }} fullWidth rows='12' value={subTopic.nameSubTopic}></TextField>
                         {React.cloneElement(props.children, { data: subTopic.content, topic: props.idx, subTopic: index })}
                     </ExpansionPanelDetails>
                     <ExpansionPanelActions>
@@ -216,10 +216,11 @@ function SubTopics(props) {
 }
 
 function QAndA(props) {
+
     let topics = props.data
     let onScreen = topics.map(
         (topic, index) => {
-
+        console.log(topic.response)
             return (
                 <ExpansionPanel key={index} >
                     <ExpansionPanelSummary
@@ -231,8 +232,8 @@ function QAndA(props) {
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails className="qAndAFields">
                         <TextField label="Question" fullWidth rows='12' value={topic.question} onChange={(e) => { props.handleChange(e.target.value, [props.topic, props.subTopic, "question", index]) }}></TextField>
-                        <p>{localize[props.lang].response}:</p>
-                        <Editor inline className="tiny" init={{  plugins: 'link image code' }} initialValue={topic.response} onChange={(e) => { props.handleChange(e.level.content, [props.topic, props.subTopic, "response", index]) }} />
+                        <p>{localize[props.lang].answer}:</p>
+                        <Editor inline className="tiny" init={{  plugins: 'link image code' }} value={topic.response} onEditorChange={(e) => {props.handleChange(e, [props.topic, props.subTopic, "response", index]) }} />
                     </ExpansionPanelDetails>
                     <ExpansionPanelActions>
                         <Button color='secondary' onClick={(e) => {
